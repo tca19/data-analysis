@@ -1,9 +1,16 @@
 # data-analysis
 
-## Requirements
+## Installation
 
-In order to run the .ipynb files, you will need to install the following
-Python 3 libraries :
+Install the required Python3 packages :
+
+```
+sudo pip3 install --upgrade ipython numpy pandas matplotlib scipy \
+                            scikit-learn jupyter
+```
+
+If you had installed the package with something else than pip3 (like Anaconda),
+make sure your packages meet these requirements :
 
   * ipython (6.2+)
   * numpy (1.13+)
