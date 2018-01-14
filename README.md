@@ -9,7 +9,7 @@ sudo pip3 install --upgrade ipython numpy pandas matplotlib scipy \
                             scikit-learn jupyter
 ```
 
-If you had installed the package with something else than pip3 (like Anaconda),
+If you had installed the packages with something else than pip3 (like Anaconda),
 make sure your packages meet these requirements :
 
   * ipython (6.2+)
@@ -30,5 +30,5 @@ $ cd data-analysis/
 $ jupyter notebook
 ```
 
-Your web browser should open. Select the corresponding td folder and complete
-the .ipynb file.
+Your web browser should open. Select the corresponding session folder and
+complete the .ipynb file.
