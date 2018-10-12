@@ -12,12 +12,12 @@ sudo pip3 install --upgrade ipython numpy pandas matplotlib scipy \
 If you had installed the packages with something else than pip3 (like Anaconda),
 make sure your packages meet these requirements :
 
-  * ipython (6.2+)
-  * numpy (1.13+)
-  * pandas (0.20+)
-  * matplotlib (2.1.0+)
-  * scipy (0.19+)
-  * scikit-learn (0.19+)
+  * ipython (7.0+)
+  * numpy (1.15+)
+  * pandas (0.23+)
+  * matplotlib (3.0+)
+  * scipy (1.1.0+)
+  * scikit-learn (0.20+)
   * jupyter
 
 ## Instructions
