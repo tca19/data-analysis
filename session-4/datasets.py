@@ -1,17 +1,19 @@
 import numpy as np
-import pandas as pd
 import os
+import random
 from scipy import signal
 from sklearn.datasets import load_boston
 from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures
 from sklearn.datasets.samples_generator import make_blobs
 
-def make_forge(n_samples=30):
-    X, y = make_blobs(n_samples, centers=2, random_state=4)
-    y[np.array([7, 27])] = 0
-    mask = np.ones(len(X), dtype=np.bool)
-    mask[np.array([0, 1, 5, 26])] = 0
-    X, y = X[mask], y[mask]
+def make_forge(n_points=30):
+    random.seed(0)
+    X, y = make_blobs(centers=2, random_state=4, n_samples=n_points)
+    ratio_outliers = 0.07 # 7% of points are outliers
+    n_outlier = int(ratio_outliers * n_points) + 1
+    idx_outlier = random.sample(range(n_points), n_outlier)
+    for i in idx_outlier:
+        y[i] ^= 1 # flip the class (it's binary so 1 becomes 0, 0 becomes 1)
     return X, y
 
 def make_wave(n_samples=100):
