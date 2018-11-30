@@ -716,6 +716,242 @@
   \end{itemize}
 \end{frame}
 
+% SVM
+\subsection{Support Vector Machine}
+\begin{frame}
+  \frametitle{Support Vector Machine}
+  Support Vector Machine (SVM) is an algorithm used to solve
+  \textbf{classification problems}. The main goal is to find the \textbf{optimal
+  hyperplane}.\\~\\
+
+  \begin{columns}
+    \column{0.48\linewidth}
+      \centering
+      \includegraphics[height=4.2cm]{img/svm_goal.png}
+
+    \column{0.48\linewidth}
+      \begin{itemize}
+        \item ${H_1}$ is not correct
+        \item ${H_2}$ is correct, but not the best
+        \item ${H_3}$ is correct and optimal
+      \end{itemize}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is the optimal hyperplane?}
+  If the training data is linearly separable, an infinite number of correct
+  hyperplanes can be found. So we need to discriminate them to choose the
+  optimal one. We introduce the notion of \textbf{margin} as the distance
+  between the hyperplane and the closest points from training set.
+  \\~\\
+  The \textbf{optimal hyperplane} is the one with the \textbf{largest margin}.
+  The data points on the margin are called \textbf{support vectors}.
+
+  \begin{center}
+    \includegraphics[height=3.8cm]{img/svm_margin.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Finding the optimal hyperplane}
+  \begin{columns}
+    \column{0.48\linewidth}
+      \parbox{\linewidth}{The equation of an hyperplane is:
+
+      \begin{equation}
+        \vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x}} - b = 0
+      \end{equation}
+
+      The equations of the hyperplanes representing the margins are:
+
+      \begin{equation}
+        \begin{cases}
+          \vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x}} - b = +1\\
+          \vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x}} - b = -1
+        \end{cases}
+      \end{equation}
+      }
+
+      The distance between the margins and the optimal hyperplane is:
+
+      \begin{equation}
+        \frac{1}{{\lvert \lvert w \rvert \rvert}^2}
+      \end{equation}
+
+    \column{0.48\linewidth}
+      \centering
+      \includegraphics[height=4.2cm]{img/svm_hyperplanes.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Finding the optimal hyperplane}
+  The main goal of SVM is to \textbf{maximize the margin}, this means to
+  \textbf{minimize the value of ${\lvert \lvert w \rvert \rvert}^2$}.
+
+  We also want to correctly classify the points w.r.t. the margin (i.e. no points are between
+  the two hyperplanes defining the margin). This means:
+  \begin{equation}
+    \begin{cases}
+      \vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x}} - b \geq +1
+        \text{ for labels = +1}\\
+      \vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x}} - b \leq -1
+        \text{ for labels = -1}
+    \end{cases}
+  \end{equation}
+
+  This can be rewritten as:
+  \begin{equation}
+    y \times (\vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x}} - b) \geq +1
+  \end{equation}
+
+  So the SVM solves (with the \textbf{Lagrangian multiplier} method):
+  \begin{equation}
+    \min_{w, b} {\lvert \lvert w \rvert \rvert}^2 \quad s.t. \quad
+    y_i \times (\vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x_i}} - b) \geq +1
+    \quad \forall ~i
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Soft margin}
+  The assumption that our dataset is linearly separable is strong and not true
+  for most of the cases. We can create a new model that will find the
+  optimal hyperplane, but do not try to correctly classify every training point.
+  We introduce the \textbf{hinge loss} as:
+
+  \begin{equation}
+    \max (0, 1 - y_i \times
+      (\vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x_i}} - b))
+  \end{equation}
+
+  The problem to optimize becomes:
+  \begin{equation}
+    \min_{w, b} \left( {\lvert \lvert w \rvert \rvert}^2 + \lambda \sum_{i = 1}^n
+    \max (0, 1 - y_i \times
+      (\vec{\boldsymbol{w}} \cdot \vec{\boldsymbol{x_i}} - b)) \right)
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Support Vector Machine}
+  SVM finds the optimal hyperplane by maximizing the margin. With hard margin,
+  no tuning is required but it does not work if the data is not linearly
+  separable. With soft margin, there is always a correct solution and the model
+  is more robust to outliers.
+  \\~\\
+  \textbf{Pros}
+  \begin{itemize}
+    \item work well on high or low dimension data
+    \item allow very complex boundaries (with kernel trick)
+  \end{itemize}
+
+  \textbf{Cons}
+  \begin{itemize}
+    \item do not scale well
+    \item require preprocessing and tuning
+    \item hard to inspect and understand
+  \end{itemize}
+\end{frame}
+
+% Neural nets
+\subsection{Neural networks}
+\begin{frame}
+  \frametitle{Neural Networks}
+  A neural network is a model used for either \textbf{classification} or
+  \textbf{regression} problems. The main unit of a neural network is called a
+  \textbf{neuron} :
+
+  \begin{center}
+    \includegraphics[height=2cm]{img/neuron.png}
+  \end{center}
+
+  Each neuron has a weight vector $w$ and a bias $b$. Its output is:
+  \begin{equation}
+    y = f(\boldsymbol{w} \cdot \boldsymbol{x} + b)
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Neural Networks}
+  When we combine several neurons, we obtain a neural network :
+
+  \begin{center}
+    \includegraphics[height=5cm]{img/nn_full.png}
+  \end{center}
+
+  Each neuron from one layer is connect to each neurons from the following
+  layer. We call this the \textbf{fully connected} architecture.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Training neural networks}
+  \begin{center}
+    \includegraphics[height=3cm]{img/nn_basic.png}
+  \end{center}
+  The goal is to be able to predict the output given the input. We can compute
+  the cost for one training example as the difference between the predicted
+  output and its label :
+
+  \begin{equation}
+    C_i = \frac{1}{2}
+    {\lvert \lvert \boldsymbol{y_i} - a^l(\boldsymbol{x_i}) \rvert \rvert}^2
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Training neural networks}
+  We want to minimize the cost $C_i$. We can use the \textbf{gradient descent}
+  to do so. We compute the partial derivative of $C_i$ w.r.t. to the weights and
+  biases of the last layer.
+
+  \begin{equation}
+    \frac{\partial C_i}{\partial w_{jk}^l} \quad and \quad
+    \frac{\partial C_i}{\partial b_j^l}
+  \end{equation}
+
+  And then update the weights and biases with :
+  \begin{equation}
+    w_{jk}^l = w_{jk}^l - \lambda \times\frac{\partial C_i}{\partial w_{jk}^l}
+  \end{equation}
+
+  \begin{equation}
+    b_j^l = b_j^l - \lambda \times\frac{\partial C_i}{\partial b_j^l}
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Training neural networks}
+  We repeat the same process on the layer before the last one, and again on the
+  layer before and again until the input layer. Since we are moving backward, we are
+  calling this the \textbf{backpropagation}.\\~\\
+
+  We repeat this process for each training examples. Once we have seen all
+  training examples, we call this an \textbf{epoch}. We repeat the backprogation
+  algorithm until a certain number of epoch is done, or until the network has a
+  good accuracy (or a cost below a threshold).
+\end{frame}
+
+\begin{frame}
+  \frametitle{Neural Networks}
+  Neural network is a really big subject and we only cover a fraction of it in
+  this course. Many more implementations exist (convolutional neural network,
+  deep network, recurrent neural network...). Neural networks have been proved
+  to be able to compute any function (so in theory, it can always predict the
+  right output given the input).
+  \\~\\
+  \textbf{Pros}
+  \begin{itemize}
+    \item can capture information in large datasets
+    \item can build complex models
+  \end{itemize}
+
+  \textbf{Cons}
+  \begin{itemize}
+    \item slow to train (if deep)
+    \item require preprocessing (homogeneous data)
+    \item hard to tune
+  \end{itemize}
+\end{frame}
 \end{document}
-
-
