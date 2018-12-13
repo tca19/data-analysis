@@ -42,7 +42,7 @@ def plot_2d_separator(classifier, X, y, fill=False, ax=None, eps=None, alpha=1,
                    colors="black", alpha=alpha, linewidths=linewidth,
                    linestyles=linestyle, zorder=5)
 
-    ax.scatter(X[:,0], X[:,1], c=y, s=5, cmap=cm2)
+    ax.scatter(X[:,0], X[:,1], c=y, s=60, cmap=cm2)
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(y_min, y_max)
     ax.set_xticks(())
