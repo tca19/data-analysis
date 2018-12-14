@@ -954,4 +954,120 @@
     \item hard to tune
   \end{itemize}
 \end{frame}
+
+%--------------------------------
+%    U N S U P E R V I S E D    -
+%--------------------------------
+
+\section{Unsupervised Learning}
+
+% PCA
+\subsection{Principal Component Analysis}
+\begin{frame}
+  \frametitle{Representing data}
+  \begin{columns}
+    \column{0.48\linewidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=1.2cm]{img/pca_1dim.png}
+        \caption{1 dimension}
+      \end{figure}
+      \begin{figure}
+        \centering
+        \includegraphics[height=3.2cm]{img/pca_2dim.png}
+        \caption{2 dimensions}
+      \end{figure}
+
+    \column{0.48\linewidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=3.2cm]{img/pca_3dim.png}
+        \caption{3 dimensions}
+      \end{figure}
+      \parbox{\linewidth}{
+        \centering
+        4 dimensions ?\\
+        $n$ dimensions ?}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reducing the dimension}
+  To visualize data, we need to project it into a 1, 2 or 3 dimensional space
+  (because we can not draw a representation if there are more than 3
+  dimensions). So we \textbf{need to reduce the number of dimensions}. One way
+  is to remove unimportant dimensions.\\~\\
+
+  \centering
+  \includegraphics[height=5cm]{img/pca_bef-aft.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Finding the important dimensions}
+  We consider a feature to be important if \textbf{it has a lot of variations}.
+  Indeed, if all the examples share almost the same value for a certain
+  features, we can not extract useful information from this feature.  So the
+  most important dimensions are the ones that \textbf{maximize the variance}.
+  \\~\\
+  \centering
+  \includegraphics[height=4.5cm]{img/pca_2dim.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Principal Component Analysis}
+  PCA finds the directions that have the most variations. If the vectors have
+  $n$ dimension, PCA will find $n$ directions. The directions found are ranked
+  according to their variance, so first direction has the most variations,
+  second one has the second most variations...\\~\\
+
+  These directions are called \textbf{principal components (PC)} : PC1 has the most
+  variations, PC2 the second most variations...
+  All principal components are \textbf{orthogonal} to each other. So PCA is like
+  "finding a new set of axis" to represent the data. Then, by only selecting the
+  2 or 3 first PC, we can draw our dataset into a space where we can visualize
+  our data.\\~\\
+
+  We can compute the PC with :
+  \begin{itemize}
+    \item eigenvalue decomposition of the covariance matrix
+    \item singular value decomposition
+  \end{itemize}
+\end{frame}
+
+% Clustering
+\subsection{Clustering}
+\begin{frame}
+  \frametitle{Clustering}
+  Clustering is a method to divide a dataset into a certain number of
+  \textbf{clusters}. A cluster is a group of points that have minimal distance
+  between them. Below is an example with 3 clusters.
+
+  \center
+  \includegraphics[height=5cm]{img/kmeans.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{K-means clustering algorithm}
+  K-means is one fast algorithm that can be used to separate a dataset into $k$
+  clusters with complexity $\mathcal{O}(k*m*d)$.\\~\\
+
+  \textbf{Inputs} : set of $n$ data points $\mathcal{X}$, number of clusters $k$
+
+  \textbf{Procedure} :
+  \begin{itemize}
+    \item select $k$ points at random. They form the \textbf{centroids} $c_i \in
+      C$
+    \item \textbf{while} centroids do not converge
+      \begin{itemize}
+        \item \textbf{for} $x_i$ in $\mathcal{X}$
+        \item[] - find nearest centroid $c_j$
+        \item[] - assign $x_i$ to cluster $C_j$
+      \end{itemize}
+      \begin{itemize}
+        \item \textbf{for} each cluster $C_j$
+        \item[] - define new centroid $c_j$ as
+                  $\frac{1}{n_j}\sum_{x_i \in C_j} x_i$
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 \end{document}
