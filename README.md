@@ -19,12 +19,12 @@ sudo apt install python3-tk
 If you had installed the packages with something else than pip3 (like Anaconda),
 make sure your packages meet these requirements :
 
-  * ipython (7.0+)
-  * numpy (1.15+)
-  * pandas (0.23+)
-  * matplotlib (3.0+)
-  * scipy (1.1.0+)
-  * scikit-learn (0.20+)
+  * ipython (7.8+)
+  * numpy (1.17+)
+  * pandas (0.25+)
+  * matplotlib (3.1+)
+  * scipy (1.3.1+)
+  * scikit-learn (0.21+)
   * jupyter
 
 ## Instructions
