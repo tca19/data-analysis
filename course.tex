@@ -77,9 +77,9 @@
 % summary frame
 \begin{frame}
   \frametitle{Overview}
-%  \begin{multicols}{2}
+  \begin{multicols}{2}
     \tableofcontents
-%  \end{multicols}
+  \end{multicols}
 \end{frame}
 
 %------------------
@@ -393,6 +393,227 @@
     \includegraphics[height=4.7cm]{img/underfitting.png}
   \end{center}
 \end{frame}
+
+
+%----------------------------
+%    S U P E R V I S E D    -
+%----------------------------
+
+\section{Supervised Learning}
+
+% KNN
+\subsection{k-Nearest Neighbors}
+\begin{frame}
+  \frametitle{k-Nearest Neighbors - Classification}
+  \textbf{Inputs} : set of training points $\mathcal{S}$, point $X$ to
+  classify\\
+  \textbf{Procedure} :
+  \begin{itemize}
+    \item find the $k$ closest points (the neighbors) to $X$ from $\mathcal{S}$
+    \item find the most frequent class $c$ among the neighbors
+    \item assign $c$ to $X$
+  \end{itemize}
+
+  \begin{columns}
+    \column{0.48\linewidth}
+      \parbox{\linewidth}{The $k$ closest points are defined as the points with
+      minimal distance (usually the Euclidean distance) to $X$. If there is a
+      tie in finding $c$, we can increase/decrease $k$ until the tie is broken.}
+
+    \column{0.48\linewidth}
+      \centering
+      \includegraphics[height=3.8cm]{img/knn.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{k-Nearest Neighbors - Regression}
+  \textbf{Inputs} : set of training points $\mathcal{S}$, point $X$ to predict
+  value
+
+  \textbf{Procedure} :
+  \begin{itemize}
+    \item find the $k$ closest points (the neighbors) to $X$ from $\mathcal{S}$
+    \item compute the average value $v$ of all neighbors
+    \item assign $v$ to $X$
+  \end{itemize}
+
+  If $k$ is set to 1, the value assigned to $X$ is simply the value of its
+  nearest neighbor.
+\end{frame}
+
+\begin{frame}
+  \frametitle{k-Nearest Neighbors}
+  The k-nearest neighbors is one of the simplest model in ML. It usually has two
+  main parameters : \textbf{the number of neighbors} used and \textbf{the
+  distance} used to find the closest points.
+  \\~\\
+  \textbf{Pros}
+  \begin{itemize}
+    \item model is easy to understand
+    \item does not require extended tuning to achieve good performance
+    \item works well as a baseline before training more complex models
+  \end{itemize}
+
+  \textbf{Cons}
+  \begin{itemize}
+    \item slow when many training points or many features
+    \item not very good on sparse data
+  \end{itemize}
+\end{frame}
+
+% Linear models
+\subsection{Linear Models}
+\begin{frame}
+  \frametitle{Linear Models - Regression}
+  Linear models are usually used to make values prediction. The output $\hat{y}$
+  is a \textbf{linear function} of each features $x_i$ of a given input vector
+  $X$ (hence the name of \textbf{linear} models).
+
+  \begin{equation*}
+    \hat{y} = \sum_{i = 1}^k w_i * x_i + b
+  \end{equation*}
+
+  \begin{columns}
+    \column{0.48\linewidth}
+      \parbox{\linewidth}{The model learns the coefficients $w_i$ and $b$. The
+      model is trained to minimize the \textbf{Mean Squared Error (MSE)} on all
+      training points $X$ in $\mathcal{S}$ (where $y$ is the correct value of
+      $X$).
+
+      \begin{equation*}
+        MSE = \frac{1}{\#\mathcal{S}} \sum_{X \in \mathcal{S}} (\hat{y} - y)^2
+      \end{equation*}
+      }
+
+    \column{0.48\linewidth}
+      \centering
+      \includegraphics[height=3.6cm]{img/linear_reg.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linear Models - Regression}
+  \begin{itemize}
+    \item \underline{Training}\\
+      \textbf{Inputs} : set of training points $\mathcal{S}$\\
+      \textbf{Procedure} :
+      \begin{itemize}
+        \item compute the MSE
+        \item compute the partial derivatives $\frac{\partial MSE}{\partial
+          w_i}$ and  $\frac{\partial MSE}{\partial b}$
+        \item solve the linear system given by the equations $\frac{\partial
+          MSE}{\partial w_i}=0$ and $\frac{\partial MSE}{\partial b}=0$
+        \item the solution is unique and gives you the $w_i$ and $b$
+
+      \end{itemize}
+      \textbf{Output} : learned $w_i$ and $b$
+
+    \item \underline{Predicting}\\
+      \textbf{Inputs} : learned $w_i$ and $b$, point $X$ to predict value\\
+      \textbf{Procedure} : compute $\hat{y}$ with the formula and $w_i$, $b$,
+      $x_i$\\
+      \textbf{Output} : predicted value $\hat{y}$
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linear Models - Classification}
+  Linear models can also be used for either binary or multi-class classification
+  problems. For binary classification (1 or 0 labels), the model evaluates the
+  output with :
+
+  \begin{equation*}
+    \hat{y} =
+      \begin{cases}
+        1 & \text{if } w \cdot x + b \geq 0\\
+        0 & \text{otherwise}
+      \end{cases}
+  \end{equation*}
+
+  We can rewrite the condition to remove the bias $b$ with $\sum_{i = 0}^k w_i *
+  x_i \geq 0$ and set $x_0$ to 1 for all vectors $X$. The objective of the model
+  is to find a good $w$ to predict the correct label (such that $\hat{y} =
+  y$). Different methods exist to find $w$ :
+  \begin{itemize}
+    \item perceptron
+    \item logistic regression
+    \item support vector machines (SVM)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linear Models - Perceptron}
+  We can define a loss $\ell$ (called the zero-one loss) for each point $(x, y)$
+  from our training set as follows :
+
+  \begin{equation*}
+    \ell(x, y, w) =  1_{[(w \cdot x)y \leq 0]}
+  \end{equation*}
+
+  The perceptron algorithm learns the $w$ weights as follows :
+  \begin{itemize}
+    \item initialize $w$ to 0
+    \item \textbf{for} step in [1..n]
+      \begin{itemize}
+        \item \textbf{for} x in training dataset
+        \begin{itemize}
+          \item[] \textbf{if $ (w \cdot x) \times y \leq 0$}\\
+            \hspace{.5cm} w = w + $\lambda$ y $\cdot$ x
+        \end{itemize}
+      \end{itemize}
+  \end{itemize}
+
+  The perceptron algorithm only updates the weights $w$ when it encounters a
+  misclassified example. If the dataset is \textbf{linearly separable}, the
+  perceptron algorithm is guaranteed to find an optimal solution.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linear Models - Logistic Regression}
+  Instead of directly finding the output $\hat{y}$ with the sign function, we
+  can compute the \textbf{probability of belonging to class 1} defined as
+  follows :
+
+  \begin{equation*}
+    P(y=1 | x) = \sigma(w \cdot x) = \frac{1}{1 + e^{-w \cdot x}} \in [0, 1]
+  \end{equation*}
+
+  The idea is to find $w$ such that this probability is high (near 1) for points
+  labeled with 1, and low (near 0) for points labeled with 0. We can define
+  another loss function (called negative log-likelihood) :
+
+  \begin{equation*}
+    \ell(x, y, w) = - y \times \log(\sigma(w \cdot x))
+                 - (1 - y) \times \log(1 - \sigma(w \cdot x))
+  \end{equation*}
+
+  The model is trained to minimize the loss for all training examples. Since
+  this loss function is convex, we can use different algorithms like gradient
+  descent, L-BFGS...
+\end{frame}
+
+\begin{frame}
+  \frametitle{Linear Models}
+  Linear models have two
+  main parameters : \textbf{the weight of regularization} and \textbf{the
+  type of regularization} used.
+  \\~\\
+  \textbf{Pros}
+  \begin{itemize}
+    \item models are fast to train and predict
+    \item can be used with large datasets (scalability)
+    \item works well on sparse data
+  \end{itemize}
+
+  \textbf{Cons}
+  \begin{itemize}
+    \item learned coefficients are not very interpretable
+    \item not very good at detecting correlated features
+  \end{itemize}
+\end{frame}
+
 
 
 \end{document}
