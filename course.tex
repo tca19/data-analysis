@@ -614,6 +614,107 @@
   \end{itemize}
 \end{frame}
 
+%% Decision Trees
+\subsection{Decision Trees}
+\begin{frame}
+  \frametitle{Decision Trees}
+  Decision trees are mostly used for classification problems. They learn a
+  \textbf{sequence of conditions} (if/else questions) to find the class of a vector
+  $x$.
 
+  Let's suppose we have the following dataset and we want to predict if the game
+  can be played (9 yes / 5 no) :
+  \begin{table}[htb]
+    \centering
+    \tiny
+      \begin{tabular}{@{}rcccc@{}}
+      \cmidrule{2-5}
+         & Outlook  & Humidity & Wind   & Play\\
+      \midrule
+      1  & Sunny    & High     & Weak   & No  \\
+      2  & Sunny    & High     & Strong & No  \\
+      3  & Overcast & High     & Weak   & Yes \\
+      4  & Rain     & High     & Weak   & Yes \\
+      5  & Rain     & Normal   & Weak   & Yes \\
+      6  & Rain     & Normal   & Strong & No  \\
+      7  & Overcast & Normal   & Strong & Yes \\
+      8  & Sunny    & High     & Weak   & No  \\
+      9  & Sunny    & Normal   & Weak   & Yes \\
+      10 & Rain     & Normal   & Weak   & Yes \\
+      11 & Sunny    & Normal   & Strong & Yes \\
+      12 & Overcast & High     & Strong & Yes \\
+      13 & Overcast & Normal   & Weak   & Yes \\
+      14 & Rain     & High     & Strong & No  \\
+      \bottomrule
+    \end{tabular}
+    \normalsize
+  \end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Decision Trees}
+  Many algorithms exist to create a decision tree. One of them is ID3. At each
+  step, it computes the entropy of each unused attributes  with :
+
+  \begin{equation*}
+    Entropy(S) = \sum_{x \in X} -p(x) \log_{2}p(x)
+  \end{equation*}
+
+  where $p(x)$ is the ratio between the number of elements in $x$ and in $S$.
+  The attribute that has the higher entropy is chosen as a node in the tree.
+
+  \begin{columns}
+    \column{0.48\linewidth}
+    \begin{table}[htb]
+      \centering
+      \tiny
+        \begin{tabular}{@{}rcccc@{}}
+        \cmidrule{2-5}
+           & Outlook  & Humidity & Wind   & Play\\
+        \midrule
+        1  & Sunny    & High     & Weak   & No  \\
+        2  & Sunny    & High     & Strong & No  \\
+        3  & Overcast & High     & Weak   & Yes \\
+        4  & Rain     & High     & Weak   & Yes \\
+        5  & Rain     & Normal   & Weak   & Yes \\
+        6  & Rain     & Normal   & Strong & No  \\
+        7  & Overcast & Normal   & Strong & Yes \\
+        8  & Sunny    & High     & Weak   & No  \\
+        9  & Sunny    & Normal   & Weak   & Yes \\
+        10 & Rain     & Normal   & Weak   & Yes \\
+        11 & Sunny    & Normal   & Strong & Yes \\
+        12 & Overcast & High     & Strong & Yes \\
+        13 & Overcast & Normal   & Weak   & Yes \\
+        14 & Rain     & High     & Strong & No  \\
+        \bottomrule
+      \end{tabular}
+      \normalsize
+    \end{table}
+
+    \column{0.48\linewidth}
+      \centering
+      \includegraphics[height=3.2cm]{img/id3.png}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Decision Trees}
+  Decision trees have many parameters to control their size : maximum depth,
+  number of leaf, acceptable ratio in a node... They provide a strong
+  understandable tool for people not familiar with the ML field.
+  \\~\\
+  \textbf{Pros}
+  \begin{itemize}
+    \item can visually be understood
+    \item can be used with large datasets
+    \item no preprocessing needed (normalization of features)
+  \end{itemize}
+
+  \textbf{Cons}
+  \begin{itemize}
+    \item tend to easily overfit
+    \item poor generalization performance
+  \end{itemize}
+\end{frame}
 
 \end{document}
