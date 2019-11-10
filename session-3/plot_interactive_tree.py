@@ -4,7 +4,7 @@ import matplotlib as mpl
 
 from sklearn.tree import DecisionTreeClassifier
 
-from sklearn.externals.six import StringIO  # doctest: +SKIP
+from six import StringIO
 from sklearn.tree import export_graphviz
 from matplotlib.pyplot import imread
 from scipy import ndimage
