@@ -93,7 +93,7 @@
 \begin{frame}
   \frametitle{What is data analysis?}
   \begin{block}{Data}
-    Pieces of information (measurement, values, facts...) that can be :
+    Pieces of information (measurement, values, facts...) that can be:
     \begin{itemize}
       \item structured (matrices, tabular data, RDBMS, time series...)
       \item unstructured (news articles, webpages, images/video...)
@@ -117,7 +117,7 @@
 
   With a growing popularity among scientists as well as the development of
   efficient libraries (numpy, pandas), \textbf{Python} became a great tool for
-  data analysis. Python has many advantages :
+  data analysis. Python has many advantages:
   \begin{itemize}
     \item great for string/data processing
     \item can be used for both prototyping/production
@@ -131,14 +131,14 @@
 \begin{frame}
   \frametitle{Libraries}
   This course will be based on Python 3.7 (or above) and the following
-  libraries :
+  libraries:
   \begin{itemize}
-    \item IPython (7.8+) : enhanced Python shell
-    \item numpy (1.17+) : fast/efficient arrays and operations
-    \item pandas (0.25+) : data structures (Series/DataFrame)
-    \item matplotlib (3.1+) : plots and 2D visualization
-    \item scipy (1.3.1+) : scientific algorithms
-    \item scikit-learn (0.21+) : machine learning algorithms
+    \item IPython (7.8+): enhanced Python shell
+    \item numpy (1.17+): fast/efficient arrays and operations
+    \item pandas (0.25+): data structures (Series/DataFrame)
+    \item matplotlib (3.1+): plots and 2D visualization
+    \item scipy (1.3.1+): scientific algorithms
+    \item scikit-learn (0.21+): machine learning algorithms
   \end{itemize}
 
   Jupyter Notebook will also be used to give you samples of code, as they
@@ -155,7 +155,7 @@
   transforms, linear algebra, statistical computations...
   \\~\\
 
-  The main type of data in Numpy is the \textbf{ndarray} :
+  The main type of data in Numpy is the \textbf{ndarray}:
   \begin{itemize}
     \item n-dimensional array
     \item fixed size
@@ -168,7 +168,7 @@
   \frametitle{Why is Numpy efficient?}
   As a high level language, Python is slow to do any heavy computations,
   especially if very large arrays are involved. Numpy solves this problem thanks
-  to the ndarray datatypes :
+  to the ndarray datatypes:
   \begin{itemize}
     \item efficient memory management (continuous block)
     \item use C loops instead of Python loops for computations on array
@@ -206,9 +206,9 @@
 
   Pandas has two main datatypes:
   \begin{itemize}
-    \item Series : one-dimensional container. Indexes can be integers (like an
+    \item Series: one-dimensional container. Indexes can be integers (like an
       array) or other objects (string, date...)
-    \item DataFrame : tabular data, like a spreadsheet. It contains multiple
+    \item DataFrame: tabular data, like a spreadsheet. It contains multiple
       rows and multiple columns. It can be seen as a collection of Series.
   \end{itemize}
 \end{frame}
@@ -405,9 +405,9 @@
 \subsection{k-Nearest Neighbors}
 \begin{frame}
   \frametitle{k-Nearest Neighbors - Classification}
-  \textbf{Inputs} : set of training points $\mathcal{S}$, point $X$ to
+  \textbf{Inputs}: set of training points $\mathcal{S}$, point $X$ to
   classify\\
-  \textbf{Procedure} :
+  \textbf{Procedure}:
   \begin{itemize}
     \item find the $k$ closest points (the neighbors) to $X$ from $\mathcal{S}$
     \item find the most frequent class $c$ among the neighbors
@@ -428,10 +428,10 @@
 
 \begin{frame}
   \frametitle{k-Nearest Neighbors - Regression}
-  \textbf{Inputs} : set of training points $\mathcal{S}$, point $X$ to predict
+  \textbf{Inputs}: set of training points $\mathcal{S}$, point $X$ to predict
   value
 
-  \textbf{Procedure} :
+  \textbf{Procedure}:
   \begin{itemize}
     \item find the $k$ closest points (the neighbors) to $X$ from $\mathcal{S}$
     \item compute the average value $v$ of all neighbors
@@ -445,7 +445,7 @@
 \begin{frame}
   \frametitle{k-Nearest Neighbors}
   The k-nearest neighbors is one of the simplest model in ML. It usually has two
-  main parameters : \textbf{the number of neighbors} used and \textbf{the
+  main parameters: \textbf{the number of neighbors} used and \textbf{the
   distance} used to find the closest points.
   \\~\\
   \textbf{Pros}
@@ -496,8 +496,8 @@
   \frametitle{Linear Models - Regression}
   \begin{itemize}
     \item \underline{Training}\\
-      \textbf{Inputs} : set of training points $\mathcal{S}$\\
-      \textbf{Procedure} :
+      \textbf{Inputs}: set of training points $\mathcal{S}$\\
+      \textbf{Procedure}:
       \begin{itemize}
         \item compute the MSE
         \item compute the partial derivatives $\frac{\partial MSE}{\partial
@@ -507,13 +507,13 @@
         \item the solution is unique and gives you the $w_i$ and $b$
 
       \end{itemize}
-      \textbf{Output} : learned $w_i$ and $b$
+      \textbf{Output}: learned $w_i$ and $b$
 
     \item \underline{Predicting}\\
-      \textbf{Inputs} : learned $w_i$ and $b$, point $X$ to predict value\\
-      \textbf{Procedure} : compute $\hat{y}$ with the formula and $w_i$, $b$,
+      \textbf{Inputs}: learned $w_i$ and $b$, point $X$ to predict value\\
+      \textbf{Procedure}: compute $\hat{y}$ with the formula and $w_i$, $b$,
       $x_i$\\
-      \textbf{Output} : predicted value $\hat{y}$
+      \textbf{Output}: predicted value $\hat{y}$
 
   \end{itemize}
 \end{frame}
@@ -522,7 +522,7 @@
   \frametitle{Linear Models - Classification}
   Linear models can also be used for either binary or multi-class classification
   problems. For binary classification (1 or 0 labels), the model evaluates the
-  output with :
+  output with:
 
   \begin{equation*}
     \hat{y} =
@@ -535,7 +535,7 @@
   We can rewrite the condition to remove the bias $b$ with $\sum_{i = 0}^k w_i *
   x_i \geq 0$ and set $x_0$ to 1 for all vectors $X$. The objective of the model
   is to find a good $w$ to predict the correct label (such that $\hat{y} =
-  y$). Different methods exist to find $w$ :
+  y$). Different methods exist to find $w$:
   \begin{itemize}
     \item perceptron
     \item logistic regression
@@ -546,13 +546,13 @@
 \begin{frame}
   \frametitle{Linear Models - Perceptron}
   We can define a loss $\ell$ (called the zero-one loss) for each point $(x, y)$
-  from our training set as follows :
+  from our training set as follows:
 
   \begin{equation*}
     \ell(x, y, w) =  1_{[(w \cdot x)y \leq 0]}
   \end{equation*}
 
-  The perceptron algorithm learns the $w$ weights as follows :
+  The perceptron algorithm learns the $w$ weights as follows:
   \begin{itemize}
     \item initialize $w$ to 0
     \item \textbf{for} step in [1..n]
@@ -574,7 +574,7 @@
   \frametitle{Linear Models - Logistic Regression}
   Instead of directly finding the output $\hat{y}$ with the sign function, we
   can compute the \textbf{probability of belonging to class 1} defined as
-  follows :
+  follows:
 
   \begin{equation*}
     P(y=1 | x) = \sigma(w \cdot x) = \frac{1}{1 + e^{-w \cdot x}} \in [0, 1]
@@ -953,6 +953,122 @@
     \item slow to train (if deep)
     \item require preprocessing (homogeneous data)
     \item hard to tune
+  \end{itemize}
+\end{frame}
+
+%--------------------------------
+%    U N S U P E R V I S E D    -
+%--------------------------------
+
+\section{Unsupervised Learning}
+
+% PCA
+\subsection{Principal Component Analysis}
+\begin{frame}
+  \frametitle{Representing data}
+  \begin{columns}
+    \column{0.48\linewidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=1.2cm]{img/pca_1dim.png}
+        \caption{1 dimension}
+      \end{figure}
+      \begin{figure}
+        \centering
+        \includegraphics[height=3.2cm]{img/pca_2dim.png}
+        \caption{2 dimensions}
+      \end{figure}
+
+    \column{0.48\linewidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=3.2cm]{img/pca_3dim.png}
+        \caption{3 dimensions}
+      \end{figure}
+      \parbox{\linewidth}{
+        \centering
+        4 dimensions ?\\
+        $n$ dimensions ?}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reducing the dimension}
+  To visualize data, we need to project it into a 1, 2 or 3 dimensional space
+  (because we can not draw a representation if there are more than 3
+  dimensions). So we \textbf{need to reduce the number of dimensions}. One way
+  is to remove unimportant dimensions.\\~\\
+
+  \centering
+  \includegraphics[height=5cm]{img/pca_bef-aft.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Finding the important dimensions}
+  We consider a feature to be important if \textbf{it has a lot of variations}.
+  Indeed, if all the examples share almost the same value for a certain
+  features, we can not extract useful information from this feature.  So the
+  most important dimensions are the ones that \textbf{maximize the variance}.
+  \\~\\
+  \centering
+  \includegraphics[height=4.5cm]{img/pca_2dim.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Principal Component Analysis}
+  PCA finds the directions that have the most variations. If the vectors have
+  $n$ dimension, PCA will find $n$ directions. The directions found are ranked
+  according to their variance, so first direction has the most variations,
+  second one has the second most variations...\\~\\
+
+  These directions are called \textbf{principal components (PC)}: PC1 has the most
+  variations, PC2 the second most variations...
+  All principal components are \textbf{orthogonal} to each other. So PCA is like
+  "finding a new set of axis" to represent the data. Then, by only selecting the
+  2 or 3 first PC, we can draw our dataset into a space where we can visualize
+  our data.\\~\\
+
+  We can compute the PC with:
+  \begin{itemize}
+    \item eigenvalue decomposition of the covariance matrix
+    \item singular value decomposition
+  \end{itemize}
+\end{frame}
+
+% Clustering
+\subsection{Clustering}
+\begin{frame}
+  \frametitle{Clustering}
+  Clustering is a method to divide a dataset into a certain number of
+  \textbf{clusters}. A cluster is a group of points that have minimal distance
+  between them. Below is an example with 3 clusters.
+
+  \center
+  \includegraphics[height=5cm]{img/kmeans.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{K-means clustering algorithm}
+  K-means is one fast algorithm that can be used to separate a dataset into $k$
+  clusters with complexity $\mathcal{O}(k*m*d)$.\\~\\
+
+  \textbf{Inputs}: set of $n$ data points $\mathcal{X}$, number of clusters $k$
+
+  \textbf{Procedure}:
+  \begin{itemize}
+    \item select $k$ points at random. They form the \textbf{centroids} $c_i \in
+      C$
+    \item \textbf{while} centroids do not converge
+      \begin{itemize}
+        \item \textbf{for} $x_i$ in $\mathcal{X}$
+        \item[] - find nearest centroid $c_j$
+        \item[] - assign $x_i$ to cluster $C_j$
+      \end{itemize}
+      \begin{itemize}
+        \item \textbf{for} each cluster $C_j$
+        \item[] - define new centroid $c_j$ as
+                  $\frac{1}{n_j}\sum_{x_i \in C_j} x_i$
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
